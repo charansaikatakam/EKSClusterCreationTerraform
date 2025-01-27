@@ -31,8 +31,6 @@ resource "aws_eks_node_group" "EKSCluster" {
   node_group_name = "${var.env_prefix}-EKSCluster-NodeGroup"
   node_role_arn   = aws_iam_role.myAmazonEKSNodeRole.arn
   subnet_ids      = [
-      aws_subnet.eks_vpc_PublicSubnet02.id,
-      aws_subnet.eks_vpc_PublicSubnet01.id,
       aws_subnet.eks_vpc_PrivateSubnet02.id,
       aws_subnet.eks_vpc_PrivateSubnet01.id
     ]
