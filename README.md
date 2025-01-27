@@ -37,4 +37,10 @@ Simple EKS cluster creation with EKS managed nodes
     * kubectl create deploy nginx --replicas 2 --image nginx:latest
     ![alt text](image-2.png)
 
+# Destroy post testing if cluster is not required.
+
+1. Execute the following command to destroy.
+    * terraform destroy
+    ![alt text](image-1.png)
+
             
