@@ -31,6 +31,10 @@ Simple EKS cluster creation with EKS managed nodes
 
 1. Check whether the nodes are ready or not using the following command.
     * kubectl get nodes
+    ![alt text](image-3.png)
 2. If ready, terminate the node from EC2 console, new node should be launched automatically and check whether the new instance is ready or not.
-2. Create a deployment with nginx image
+3. Create a deployment with nginx image
+    * kubectl create deploy nginx --replicas 2 --image nginx:latest
+    ![alt text](image-2.png)
+
             
