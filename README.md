@@ -26,4 +26,11 @@ Simple EKS cluster creation with EKS managed nodes
     * kubectl get svc - You should get the following result
     ![alt text](image.png) 
     if you are unable to get the result, add the IAM user in access tab of cluster - https://docs.aws.amazon.com/eks/latest/userguide/creating-access-entries.html
+
+# Sanity testing
+
+1. Check whether the nodes are ready or not using the following command.
+    * kubectl get nodes
+2. If ready, terminate the node from EC2 console, new node should be launched automatically and check whether the new instance is ready or not.
+2. Create a deployment with nginx image
             

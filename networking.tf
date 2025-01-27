@@ -13,10 +13,13 @@ resource "aws_internet_gateway" "eks_vpc_gw" {
     Name = "${var.env_prefix}-eksManaged-VPC-IGW"
   }
 }
-
+data "aws_availability_zones" "available_AZ" {
+  state = "available"
+}
 resource "aws_subnet" "eks_vpc_PublicSubnet01" {
   vpc_id     = aws_vpc.eks_vpc.id
   cidr_block = var.eks_vpc_PublicSubnet01_cidr_block
+  availability_zone = data.aws_availability_zones.available_AZ[1]
 
   tags = {
     Name = "${var.env_prefix}-PublicSubnet01"
@@ -27,6 +30,7 @@ resource "aws_subnet" "eks_vpc_PublicSubnet01" {
 resource "aws_subnet" "eks_vpc_PublicSubnet02" {
   vpc_id     = aws_vpc.eks_vpc.id
   cidr_block = var.eks_vpc_PublicSubnet02_cidr_block
+  availability_zone = data.aws_availability_zones.available_AZ[0]
 
   tags = {
     Name = "${var.env_prefix}-PublicSubnet02"
@@ -37,6 +41,7 @@ resource "aws_subnet" "eks_vpc_PublicSubnet02" {
 resource "aws_subnet" "eks_vpc_PrivateSubnet01" {
   vpc_id     = aws_vpc.eks_vpc.id
   cidr_block = var.eks_vpc_PrivateSubnet01_cidr_block
+  availability_zone = data.aws_availability_zones.available_AZ[0]
 
   tags = {
     Name = "${var.env_prefix}-PrivateSubnet01"
@@ -47,6 +52,7 @@ resource "aws_subnet" "eks_vpc_PrivateSubnet01" {
 resource "aws_subnet" "eks_vpc_PrivateSubnet02" {
   vpc_id     = aws_vpc.eks_vpc.id
   cidr_block = var.eks_vpc_PrivateSubnet02_cidr_block
+  availability_zone = data.aws_availability_zones.available_AZ[1]
 
   tags = {
     Name = "${var.env_prefix}-PrivateSubnet02"
