@@ -53,3 +53,8 @@ variable "eks_pod_identity_agent_addon_required" {
   default = false
   description = "Please whether eks-pod-identity-agent addon is required or not"
 }
+variable "userName" {
+  type = string
+  default = "Terraformuser"
+  description = "Please mention the user name to provide the EKS Admin access"
+}

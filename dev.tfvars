@@ -9,3 +9,4 @@ vpc_CNI_addon_required = true
 coreDNS_addon_required = true
 kubeProxy_addon_required = true
 eks_pod_identity_agent_addon_required = true
+userName = "Terraformuser"
