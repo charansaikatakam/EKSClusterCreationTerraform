@@ -8,9 +8,11 @@ resource "aws_eks_access_entry" "userAdminRole" {
   cluster_name      = aws_eks_cluster.EKSCluster.name
   principal_arn     = "arn:aws:iam::${local.account_id}:user/${var.userName}"
   type              = "STANDARD"
+  depends_on = [aws_eks_cluster.EKSCluster]
 }
 
 resource "aws_eks_access_policy_association" "EKSAdminPolicy" {
+  depends_on = [aws_eks_access_entry.userAdminRole]
   cluster_name  = aws_eks_cluster.EKSCluster.name
   policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
   principal_arn = "arn:aws:iam::${local.account_id}:user/${var.userName}"
@@ -21,6 +23,7 @@ resource "aws_eks_access_policy_association" "EKSAdminPolicy" {
 }
 
 resource "aws_eks_access_policy_association" "EKSClusterAdminPolicy" {
+  depends_on = [aws_eks_access_entry.userAdminRole]
   cluster_name  = aws_eks_cluster.EKSCluster.name
   policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
   principal_arn = "arn:aws:iam::${local.account_id}:user/${var.userName}"

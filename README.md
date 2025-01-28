@@ -9,15 +9,16 @@ Simple EKS cluster creation with EKS managed nodes
 * Kubectl should be installed - https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
 * Terraform should be installed - https://developer.hashicorp.com/terraform/install
 * AWSCLI should be installed - https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html
-* IAM User to create cluster - if you want to setup the cluster using root user then this step is optional - https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html
+* IAM User to create cluster or a user which you want to provide admin access to your cluster - https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html
 
 # Steps to use the code
 
 1. Clone the repo.
 2. Navigate to the direcotry EKSClusterCreationTerraform
 3. change the default variables if required as per your requirement.
-4. Execute the following terraform commands.
+4. Initate the terraform using the following command.
     * terraform init
+4. Execute the following terraform commands if you want to execute the code with default values else you can use -var-file=dev.tfvars at the end of the following commands.
     * terraform plan - please check what all resources are being created.
     * terraform apply - approve the execution.
 5. Check the resources in AWS.
@@ -33,8 +34,9 @@ Simple EKS cluster creation with EKS managed nodes
     * kubectl get nodes
     
         ![alt text](image-3.png)
-2. If ready, terminate the node from EC2 console, new node should be launched automatically and check whether the new instance is ready or not.
-3. Create a deployment with nginx image
+2. Check whether all addons are created or not. 
+3. If ready, terminate the node from EC2 console, new node should be launched automatically and check whether the new instance is ready or not.
+4. Create a deployment with nginx image
     * kubectl create deploy nginx --replicas 2 --image nginx:latest
     ![alt text](image-2.png)
 
