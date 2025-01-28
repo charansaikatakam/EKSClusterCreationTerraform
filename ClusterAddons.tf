@@ -46,8 +46,8 @@ resource "aws_eks_addon" "VPCCNI" {
   cluster_name = aws_eks_cluster.EKSCluster.name
   addon_name   = "vpc-cni"
   resolve_conflicts_on_create = "OVERWRITE"
-  service_account_role_arn = aws_iam_role.VPCCNIROLE.arn
-  depends_on = [aws_eks_cluster.EKSCluster,aws_iam_role.VPCCNIROLE,aws_iam_role_policy_attachment.VPCCNIROLEAttachment]
+  service_account_role_arn = aws_iam_role.VPCCNIROLE[0].arn
+  depends_on = [aws_eks_cluster.EKSCluster,aws_iam_role.VPCCNIROLE[0],aws_iam_role_policy_attachment.VPCCNIROLEAttachment[0]]
 }
 
 resource "aws_eks_addon" "coreDNS" {
