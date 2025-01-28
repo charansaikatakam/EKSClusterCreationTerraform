@@ -19,3 +19,13 @@ resource "aws_eks_access_policy_association" "example" {
     type       = "cluster"
   }
 }
+
+resource "aws_eks_access_policy_association" "example" {
+  cluster_name  = aws_eks_cluster.EKSCluster.name
+  policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+  principal_arn = "arn:aws:iam::${local.account_id}:user/${var.userName}"
+
+  access_scope {
+    type       = "cluster"
+  }
+}   
