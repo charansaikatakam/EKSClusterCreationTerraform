@@ -28,9 +28,28 @@ variable "EKSClusterVersion" {
   default = "1.31"
   description = "Please provide the eks cluster version"
 }
-
 variable "env_prefix" {
   type = string
   default = "dev"
   description = "Please provide the environment prefix"
+}
+variable "vpc_CNI_addon_required" {
+  type = bool
+  default = false
+  description = "Please whether vpc CNI addon is required or not"
+}
+variable "coreDNS_addon_required" {
+  type = bool
+  default = false
+  description = "Please whether coreDNS addon is required or not"
+}
+variable "kubeProxy_addon_required" {
+  type = bool
+  default = false
+  description = "Please whether kubeProxy addon is required or not"
+}
+variable "eks_pod_identity_agent_addon_required" {
+  type = bool
+  default = false
+  description = "Please whether eks-pod-identity-agent addon is required or not"
 }

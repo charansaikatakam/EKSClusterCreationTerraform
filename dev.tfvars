@@ -1,0 +1,11 @@
+eks_vpc_cidr_block = "192.168.0.0/16"
+eks_vpc_PublicSubnet01_cidr_block = "192.168.0.0/18"
+eks_vpc_PublicSubnet02_cidr_block = "192.168.64.0/18"
+eks_vpc_PrivateSubnet01_cidr_block = "192.168.128.0/18"
+eks_vpc_PrivateSubnet02_cidr_block = "192.168.192.0/18"
+EKSClusterVersion = "1.31"
+env_prefix = "dev"
+vpc_CNI_addon_required = true
+coreDNS_addon_required = true
+kubeProxy_addon_required = true
+eks_pod_identity_agent_addon_required = true
