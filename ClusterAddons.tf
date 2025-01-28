@@ -28,7 +28,7 @@ data "aws_iam_policy_document" "VPCCNI_assume_role_policy" {
 
 resource "aws_iam_role" "VPCCNIROLE" {
   assume_role_policy = data.aws_iam_policy_document.VPCCNI_assume_role_policy.json
-  name               = "${env_prefix}-AmazonEKSVPCCNIRole"
+  name               = "${var.env_prefix}-AmazonEKSVPCCNIRole"
 }
 
 resource "aws_iam_role_policy_attachment" "VPCCNIROLEAttachment" {
@@ -41,12 +41,12 @@ resource "aws_eks_addon" "VPCCNI" {
   addon_name   = "vpc-cni"
   resolve_conflicts_on_create = "OVERWRITE"
   service_account_role_arn = aws_iam_role.VPCCNIROLE.arn
-  depends_on = [aws_eks_cluster.EKSCluster]
+  depends_on = [aws_eks_cluster.EKSCluster,aws_iam_role.VPCCNIROLE]
 }
 
 resource "aws_eks_addon" "coreDNS" {
   cluster_name = aws_eks_cluster.EKSCluster.name
   addon_name   = "coredns"
   resolve_conflicts_on_create = "OVERWRITE"
-  depends_on = [aws_eks_cluster.EKSCluster]
+  depends_on = [aws_eks_cluster.EKSCluster, aws_eks_node_group.EKSCluster]
 }
