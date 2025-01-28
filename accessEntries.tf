@@ -10,7 +10,7 @@ resource "aws_eks_access_entry" "userAdminRole" {
   type              = "STANDARD"
 }
 
-resource "aws_eks_access_policy_association" "example" {
+resource "aws_eks_access_policy_association" "EKSAdminPolicy" {
   cluster_name  = aws_eks_cluster.EKSCluster.name
   policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
   principal_arn = "arn:aws:iam::${local.account_id}:user/${var.userName}"
@@ -20,7 +20,7 @@ resource "aws_eks_access_policy_association" "example" {
   }
 }
 
-resource "aws_eks_access_policy_association" "example" {
+resource "aws_eks_access_policy_association" "EKSClusterAdminPolicy" {
   cluster_name  = aws_eks_cluster.EKSCluster.name
   policy_arn    = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
   principal_arn = "arn:aws:iam::${local.account_id}:user/${var.userName}"
