@@ -11,6 +11,7 @@ resource "aws_eks_access_entry" "userAdminRole" {
   depends_on = [aws_eks_cluster.EKSCluster]
 }
 
+#if you want to fine tune the access, you can decrease the access level by changing the policy_arn
 resource "aws_eks_access_policy_association" "EKSAdminPolicy" {
   depends_on = [aws_eks_access_entry.userAdminRole]
   cluster_name  = aws_eks_cluster.EKSCluster.name
