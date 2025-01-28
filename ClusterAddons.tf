@@ -18,12 +18,12 @@ data "aws_iam_policy_document" "VPCCNI_assume_role_policy" {
 
     condition {
       test     = "StringEquals"
-      variable = "${replace(aws_iam_openid_connect_provider[0].OPENIDConnector.url, "https://", "")}:sub"
+      variable = "${replace(aws_iam_openid_connect_provider.OPENIDConnector[0].url, "https://", "")}:sub"
       values   = ["system:serviceaccount:kube-system:aws-node"]
     }
 
     principals {
-      identifiers = [aws_iam_openid_connect_provider[0].OPENIDConnector.arn]
+      identifiers = [aws_iam_openid_connect_provider.OPENIDConnector[0].arn]
       type        = "Federated"
     }
   }
@@ -31,14 +31,14 @@ data "aws_iam_policy_document" "VPCCNI_assume_role_policy" {
 
 resource "aws_iam_role" "VPCCNIROLE" {
   count = var.vpc_CNI_addon_required ? 1: 0
-  assume_role_policy = data.aws_iam_policy_document[0].VPCCNI_assume_role_policy.json
+  assume_role_policy = data.aws_iam_policy_document.VPCCNI_assume_role_policy[0].json
   name               = "${var.env_prefix}-AmazonEKSVPCCNIRole"
 }
 
 resource "aws_iam_role_policy_attachment" "VPCCNIROLEAttachment" {
   count = var.vpc_CNI_addon_required ? 1: 0
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
-  role       = aws_iam_role[0].VPCCNIROLE.name
+  role       = aws_iam_role.VPCCNIROLE[0].name
 }
 
 resource "aws_eks_addon" "VPCCNI" {
