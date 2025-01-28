@@ -38,6 +38,10 @@ Simple EKS cluster creation with EKS managed nodes
     * kubectl create deploy nginx --replicas 2 --image nginx:latest
     ![alt text](image-2.png)
 
+# Access control
+
+* To provide access to the cluster we can levarage the access entries of EKS, for example, we can provide the developer access with the proper predefined access policy - For better understanding - go through https://docs.aws.amazon.com/eks/latest/userguide/access-entries.html
+
 # Destroy post testing if cluster is not required.
 
 1. Execute the following command to destroy.
@@ -45,4 +49,3 @@ Simple EKS cluster creation with EKS managed nodes
     
         ![alt text](image-1.png)
 
-            
